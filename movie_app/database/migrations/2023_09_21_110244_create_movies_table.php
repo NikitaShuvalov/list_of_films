@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if(!Schema::hasTable('movies')) {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string("title", 255)->unique()->index();
-            $table->text("description")->unique();
-            $table->data("release_date");
+            $table->text("description");
+            $table->date("release_date");
             $table->timestamps();
-        });
+        });}
     }
 
     /**
