@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Rfc4122\Validator;
 
 class MovieController extends Controller
 {
@@ -26,6 +26,11 @@ class MovieController extends Controller
         return response()->json($movie);
     }
 
+    public function create()
+    {
+        return view("movie.create_movie");
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -37,10 +42,17 @@ class MovieController extends Controller
         }
 
         $movie = Movie::create([
-            "title" => $request->input("title")
+            "title" => $request->input("title"),
+            "description" => $request->input("description")
         ]);
 
         return response()->json($movie, 201);
+    }
+
+    public function edit($id)
+    {
+        $movie = Movie::find($id);
+        return view("movie.edit_movie", compact("movie"));
     }
 
     public function update(Request $request, $id)
@@ -52,7 +64,7 @@ class MovieController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            "title" => "required|string|max:255"
+            'title' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -60,7 +72,7 @@ class MovieController extends Controller
         }
 
         $movie->title = $request->input('title');
-        $movie->director = $request->input('director');
+        $movie->description = $request->input('description');
         $movie->save();
 
         return response()->json($movie);
