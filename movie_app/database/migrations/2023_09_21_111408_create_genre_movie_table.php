@@ -9,16 +9,6 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-//    public function up(): void
-//    {
-//        Schema::create('genre_movie', function (Blueprint $table) {
-//            $table->id();
-//            $table->foreignId("genre_id")->constrained();
-//            $table->foreignId("movie_id")->constrained();
-//            $table->primary(["genre_id", "movie_id"]);
-//            $table->timestamps();
-//        });
-//    }
 
 // Миграция для таблицы 'genre_movie'
     public function up()
