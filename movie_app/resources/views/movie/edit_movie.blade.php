@@ -6,6 +6,7 @@
 
 @section("content")
     <h1>Edit movie</h1>
+    <hr>
     <form action="/edit/{{$movie->id}}" method="post">
         @csrf
         <span>Title:</span>

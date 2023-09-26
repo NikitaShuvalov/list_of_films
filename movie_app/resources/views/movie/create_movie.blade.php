@@ -6,6 +6,7 @@
 
 @section("content")
     <h1>Create movie</h1>
+    <hr>
     <form action="/create" method="post">
         @csrf
         <span>Title:</span>
